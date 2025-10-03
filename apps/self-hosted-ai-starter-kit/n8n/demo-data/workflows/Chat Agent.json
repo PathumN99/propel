@@ -1,0 +1,187 @@
+{
+  "name": "Chat Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -160,
+        -48
+      ],
+      "id": "108dab81-adb2-443f-9218-4bb66242962e",
+      "name": "When chat message received",
+      "webhookId": "6d2457cb-17ff-43dd-9595-533854d26006"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are an AI assistant that answers user's questions precisely and concisely.  \n- Background: You are connected to a  Pinecone vector store for retrieving relevant knowledge for the questions asked by the user and a memory system for remembering recent conversations.\n- Context: When the user asks a question, only answer the questions based on the documents which uploaded to the pinecone vector store and use it to provide accurate, context-aware answers.  \n- Instructions: \n  • Always respond precisely with the knowlodege gained from the uploaded document in the pinecone vector store.\n  • If the related context for the asked question, cannot be found in the document, clearly mention it in the response and try to answer with model's knowledge. \n  • If retrieved knowledge is relevant, summarize it concisely before answering.  \n  • Keep responses short, clear, and to the point (avoid long paragraphs).  \n  • If the answer is not available, state that you don’t have enough information clearly and do not guess.  \n  • Only guess answers if the user particularly ask to guess."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        48,
+        -48
+      ],
+      "id": "d13dd3b4-434f-44bd-b22d-11d2e30b4722",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -32,
+        176
+      ],
+      "id": "030db589-bf97-43a8-8abe-d6d132633bc8",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "fthIp3kUIOafrUJo",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        128,
+        176
+      ],
+      "id": "900cbf36-dbfb-470a-b491-633e960e1e20",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "Call this tool to access information to answer the user's questions.",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "qtr-1",
+          "mode": "list",
+          "cachedResultName": "qtr-1"
+        },
+        "options": {
+          "pineconeNamespace": "qtr-pdf"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.3,
+      "position": [
+        320,
+        176
+      ],
+      "id": "cf4e856e-a40b-4842-9215-a7ae9cb7dc07",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "n3Ja1GqhQucrRQCF",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        352
+      ],
+      "id": "a3f10d6e-704f-4711-89e5-3f9fc4209da2",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "fthIp3kUIOafrUJo",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "18620710-9ccc-4dfc-bc7a-2b89c6c9c152",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "558d88703fb65b2d0e44613bc35916258b0f0bf983c5d4730c00c424b77ca36a"
+  },
+  "id": "CdaUMAELDo1NgUzB",
+  "tags": []
+}
