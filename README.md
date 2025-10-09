@@ -51,13 +51,7 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
    git checkout develop
    ```
 
-2. **Navigate to the self-hosted AI starter kit directory:**
-
-   ```bash
-   cd apps/self-hosted-ai-starter-kit
-   ```
-
-3. **Start the services:**
+2. **To setup the containers and Start the services:**
    ```bash
    docker compose up
    ```
@@ -65,3 +59,4 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
 ### Access the Application
 
 Access the n8n UI using the URL: `http://localhost:5678/`
+api service is running in: `http://localhost:3000/`
