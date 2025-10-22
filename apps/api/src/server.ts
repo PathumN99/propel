@@ -5,13 +5,21 @@ const server = fastify({
 });
 
 server.get("/health", async (request, reply) => {
-  return { status: "API Service is Running!" };
+  return {
+    service: "API Service",
+    status: "GREEN",
+    message: "API Service is Running!",
+    timestamp: new Date().toISOString(),
+  };
 });
 
 const start = async () => {
   try {
-    await server.listen({ port: 3000, host: "0.0.0.0" });
-    console.log("Server running on http://localhost:3000");
+    const host = process.env.API_SERVER_HOST || "0.0.0.0";
+    const port = parseInt(process.env.API_SERVER_PORT || "3000");
+
+    await server.listen({ port, host });
+    console.log(`Server running on http://${host}:${port}`);
   } catch (err) {
     server.log.error(err);
     process.exit(1);
