@@ -1,4 +1,5 @@
 # Environment files
+*/.env
 .env
 .env.local
 .env.development.local
@@ -8,6 +9,9 @@
 # Dependencies
 node_modules/
 */node_modules/
+
+# Prisma
+packages/database/prisma/migrations/
 
 # Build outputs
 dist/
