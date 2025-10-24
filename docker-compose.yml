@@ -50,8 +50,8 @@ x-init-ollama: &init-ollama
 services:
   api:
     build:
-      context: ./apps/api
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./apps/api/Dockerfile
     hostname: api
     container_name: qtr-api
     networks: ["demo"]
@@ -63,10 +63,16 @@ services:
       - API_SERVER_HOST=${API_SERVER_HOST:-0.0.0.0}
       - API_SERVER_PORT=${API_SERVER_PORT:-3000}
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/documents?schema=public
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     volumes:
-      - ./apps/api/src:/app/src
-      - ./apps/api/package.json:/app/package.json
-      - ./apps/api/tsconfig.json:/app/tsconfig.json
+      - ./apps/api/src:/app/apps/api/src
+      - ./apps/api/package.json:/app/apps/api/package.json
+      - ./apps/api/tsconfig.json:/app/apps/api/tsconfig.json
+      - ./packages/database/src:/app/packages/database/src
+      - ./packages/database/package.json:/app/packages/database/package.json
+      - ./packages/database/tsconfig.json:/app/packages/database/tsconfig.json
+      - ./packages/database/prisma:/app/packages/database/prisma
 
   postgres:
     image: postgres:16-alpine

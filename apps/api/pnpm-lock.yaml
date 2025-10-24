@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      database:
+        specifier: ^0.0.2
+        version: 0.0.2
       fastify:
         specifier: ^4.24.3
         version: 4.29.1
@@ -227,6 +230,9 @@ packages:
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
+
+  database@0.0.2:
+    resolution: {integrity: sha512-lrqvU32firrb2TBjn4Iv9V1Mh90rqUtyyLAvdSqdGP2w7IrNy+oI5IqGNowHq8o+/WVnQtKNfNIpLYd6uWZLHw==}
 
   esbuild@0.25.10:
     resolution: {integrity: sha512-9RiGKvCwaqxO2owP61uQ4BgNborAQskMR6QusfWzQqv7AZOg5oGehdY2pRJMTKuwxd1IDBP4rSbI5lHzU7SMsQ==}
@@ -511,6 +517,8 @@ snapshots:
       fastq: 1.19.1
 
   cookie@0.7.2: {}
+
+  database@0.0.2: {}
 
   esbuild@0.25.10:
     optionalDependencies:

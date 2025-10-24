@@ -1,0 +1,16 @@
+{
+  "name": "qtr-app",
+  "version": "1.0.0",
+  "description": "QTR - Query through RFPs",
+  "private": true,
+  "packageManager": "pnpm@10.18.1",
+  "scripts": {
+    "dev": "pnpm --filter qtr-api dev",
+    "build": "pnpm --filter qtr-api build",
+    "db:generate": "pnpm --filter database db:generate"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  }
+}

@@ -51,12 +51,63 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
    git checkout develop
    ```
 
-2. **To setup the containers and Start the services:**
+2. **Create Root Environment File**
+
+   Create a `.env` file in the root directory:
+
+   ```bash
+   touch .env
+   ```
+
+   all the variables from .env.local.example to the `.env` file:
+
+3. **Create Database Environment File**
+
+   ```bash
+   cd packages/database
+   touch .env
+   ```
+
+   Add the DATABASE_URL to `packages/database/.env`:
+
+   ```env
+   DATABASE_URL="postgresql://postgres:password@localhost:5432/documents?schema=public"
+   ```
+
+4. **Generate Prisma Client and Run Migrations**
+
+   ```bash
+   pnpm db:generate
+   ```
+
+   This command will:
+
+   - Generate the Prisma Client types
+   - Create and run database migrations
+   - Sync the database schema with your Prisma schema
+
+5. **Go to the root directory and Start Docker Services**
+
    ```bash
    docker compose up
    ```
 
+   This will:
+
+   - Create the PostgreSQL container with two databases: `n8n` and `documents`
+   - Start the API service
+   - Start the n8n service
+
+### Database Architecture
+
+The project uses a single PostgreSQL container with multiple databases:
+
+- **`n8n`** - for n8n workflows
+- **`documents`** - for the API service
+- **`postgres`** - default database (cannot be removed)
+
 ### Access the Application
 
-Access the n8n UI using the URL: `http://localhost:5678/`
-api service is running in: `http://localhost:3000/`
+- **n8n UI**: `http://localhost:5678/`
+- **API Service**: `http://localhost:3000/`
+- **API Health Check**: `http://localhost:3000/health`
