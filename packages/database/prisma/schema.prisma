@@ -1,0 +1,43 @@
+// This is your Prisma schema file for the QTR App documents database
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Points to documents database only
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String?  @unique
+  fullName  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // One-to-Many: One user can create many documents
+  createdDocuments Document[]
+
+  @@map("users")
+}
+
+model Document {
+  id            String   @id @default(cuid())
+  title         String
+  description   String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  s3ReferenceId String?
+  version       Int?     @default(1)
+  author        String?
+
+  // Foreign Key: Many-to-One relationship with User (who created the document)
+  createdById String?
+  createdBy   User?   @relation(fields: [createdById], references: [id], onDelete: SetNull)
+
+  @@map("documents")
+}
