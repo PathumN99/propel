@@ -1,7 +1,7 @@
 {
-  "name": "@qtr-app/database",
+  "name": "@propel/database",
   "version": "1.0.0",
-  "description": "Database configuration and utilities for QTR App",
+  "description": "Database configuration and utilities for Propel",
   "private": true,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

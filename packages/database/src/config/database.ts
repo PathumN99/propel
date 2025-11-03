@@ -9,7 +9,7 @@ export const databaseConfig = {
   url:
     process.env["DATABASE_URL"] ||
     process.env["DATABASE_URL_DOCKER"] ||
-    "postgresql://qtr_user:qtr_password@localhost:5432/qtr_dev",
+    "postgresql://propel_user:propel_password@localhost:5432/propel_dev",
   pool: {
     min: parseInt(process.env["DATABASE_POOL_MIN"] || "2"),
     max: parseInt(process.env["DATABASE_POOL_MAX"] || "10"),

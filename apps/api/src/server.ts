@@ -1,5 +1,5 @@
 import fastify from "fastify";
-import { checkDatabaseConnection, disconnectDatabase } from "@qtr-app/database";
+import { checkDatabaseConnection, disconnectDatabase } from "@propel/database";
 import { documentRoutes } from "./routes/document";
 
 const server = fastify({

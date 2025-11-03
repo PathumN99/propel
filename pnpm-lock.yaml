@@ -17,7 +17,7 @@ importers:
 
   apps/api:
     dependencies:
-      '@qtr-app/database':
+      '@propel/database':
         specifier: workspace:*
         version: link:../../packages/database
       fastify:

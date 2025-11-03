@@ -1,12 +1,12 @@
 {
-  "name": "qtr-app",
+  "name": "propel",
   "version": "1.0.0",
-  "description": "QTR - Query through RFPs",
+  "description": "Propel - Enterprise Presales AI",
   "private": true,
   "packageManager": "pnpm@10.18.1",
   "scripts": {
-    "dev": "pnpm --filter qtr-api dev",
-    "build": "pnpm --filter qtr-api build",
+    "dev": "pnpm --filter propel-api dev",
+    "build": "pnpm --filter propel-api build",
     "db:generate": "pnpm --filter database db:generate"
   },
   "devDependencies": {
