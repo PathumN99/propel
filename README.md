@@ -4,6 +4,8 @@ Propel - Enterprise Presales AI
 
 A platform for enterprise pre-sales management. Managing RFPs, proposals and sales pipeline.
 
+<img src="logo.jpg" alt="Propel Logo" width="300">
+
 ## Table of Contents
 
 - [Problem](#problem)
