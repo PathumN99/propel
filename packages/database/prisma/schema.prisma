@@ -1,4 +1,4 @@
-// This is your Prisma schema file for the QTR App documents database
+// This is your Prisma schema file for the Propel documents database
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {

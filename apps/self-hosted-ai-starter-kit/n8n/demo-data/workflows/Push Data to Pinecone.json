@@ -18,10 +18,7 @@
       },
       "type": "n8n-nodes-base.formTrigger",
       "typeVersion": 2.2,
-      "position": [
-        -432,
-        -272
-      ],
+      "position": [-432, -272],
       "id": "47138a7a-330f-4a42-a8d4-735082fc8242",
       "name": "Upload your file here",
       "webhookId": "82848bc4-5ea2-4e5a-8bb6-3c09b94a8c5d"
@@ -41,10 +38,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1.3,
-      "position": [
-        -208,
-        -272
-      ],
+      "position": [-208, -272],
       "id": "8be66607-6f76-4412-97ee-d8ae21d52164",
       "name": "Pinecone Vector Store",
       "credentials": {
@@ -62,10 +56,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1.1,
-      "position": [
-        -128,
-        -80
-      ],
+      "position": [-128, -80],
       "id": "d19a15c5-53ee-4171-b4a4-d32b2da97ff3",
       "name": "Default Data Loader1"
     },
@@ -75,10 +66,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        -128,
-        80
-      ],
+      "position": [-128, 80],
       "id": "0436ff8d-cad5-46c1-ab84-76a09ae88968",
       "name": "Recursive Character Text Splitter"
     },
@@ -88,10 +76,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        -288,
-        -64
-      ],
+      "position": [-288, -64],
       "id": "34235d8a-583d-4fe2-86af-125bee967ecc",
       "name": "Embeddings OpenAI",
       "credentials": {

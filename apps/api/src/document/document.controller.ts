@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { prisma } from "@qtr-app/database";
+import { prisma } from "@propel/database";
 
 /**
  * Get all documents with pagination and filtering

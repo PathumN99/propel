@@ -53,7 +53,7 @@ services:
       context: .
       dockerfile: ./apps/api/Dockerfile
     hostname: api
-    container_name: qtr-api
+    container_name: propel-api
     networks: ["demo"]
     restart: unless-stopped
     ports:

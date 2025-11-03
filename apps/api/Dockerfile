@@ -27,4 +27,4 @@ WORKDIR /app
 EXPOSE 3000
 
 # Use tsx with polling for better Docker file watching
-CMD ["pnpm", "--filter", "qtr-api", "dev", "--", "--poll"]
+CMD ["pnpm", "--filter", "propel-api", "dev", "--", "--poll"]

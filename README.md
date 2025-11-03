@@ -1,6 +1,10 @@
-# qtr-app
+# Propel
 
-QTR - Query through RFPs
+Propel - Enterprise Presales AI
+
+A platform for enterprise pre-sales management. Managing RFPs, proposals and sales pipeline.
+
+<img src="logo.jpg" alt="Propel Logo" width="300">
 
 ## Table of Contents
 
@@ -15,7 +19,7 @@ QTR - Query through RFPs
 
 ## Problem
 
-Using standard LLMs to search through documents with large contexts (RFPs, etc.) to find accurate, high-quality answers has limitations. And to search manually is time-consuming, inefficient, and leads to inconsistent responses.
+Using standard LLMs to search through documents with large contexts (RFPs, proposals, etc.) to find accurate, high-quality answers has limitations. And to search manually is time-consuming, inefficient, and leads to inconsistent responses.
 
 ## Objective
 
@@ -47,7 +51,7 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
 
    ```bash
    git clone <repository-url>
-   cd qtr-app
+   cd propel
    git checkout develop
    ```
 
@@ -74,19 +78,7 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
    DATABASE_URL="postgresql://postgres:password@localhost:5432/documents?schema=public"
    ```
 
-4. **Generate Prisma Client and Run Migrations**
-
-   ```bash
-   pnpm db:generate
-   ```
-
-   This command will:
-
-   - Generate the Prisma Client types
-   - Create and run database migrations
-   - Sync the database schema with your Prisma schema
-
-5. **Go to the root directory and Start Docker Services**
+4. **Start Docker Services**
 
    ```bash
    docker compose up
@@ -94,9 +86,39 @@ A web application powered by a Retrieval-Augmented Generation (RAG) pipeline.
 
    This will:
 
-   - Create the PostgreSQL container with two databases: `n8n` and `documents`
+   - Create the PostgreSQL container
+   - **Automatically create the databases** (`n8n` and `documents`) via the initialization script
    - Start the API service
    - Start the n8n service
+
+   **Note:** The database creation script (`scripts/create-databases.sh`) runs automatically on first container initialization. It only executes when the PostgreSQL data volume is empty (i.e., when setting up from scratch or after removing the volume).
+
+5. **Generate Prisma Client**
+
+   After Docker services are running and the databases are created, you can generate the Prisma Client:
+
+   ```bash
+   pnpm db:generate
+   ```
+
+   This command generates TypeScript types for your Prisma schema. You can run this before starting Docker since it doesn't require a database connection.
+
+6. **Push Database Schema**
+
+   If you need to sync your Prisma schema with the database:
+
+   ```bash
+   cd packages/database
+   pnpm db:push
+   ```
+
+   Or from the root:
+
+   ```bash
+   pnpm --filter database db:push
+   ```
+
+   **Important:** This step requires the databases to exist first (created in step 4).
 
 ### Database Architecture
 
